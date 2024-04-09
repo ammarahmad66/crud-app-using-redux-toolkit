@@ -3,6 +3,7 @@ import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteUser } from './userSlice'
+import { logout } from '../auth/authSlice'
 
 const UserList = () => {
   const navigate = useNavigate()
@@ -24,6 +25,12 @@ const UserList = () => {
   const handleOnClick = () => {
     console.log("Add User Button Clikced")
     navigate('/add-user')
+  }
+
+  const handleLogOut = () => {
+    console.log("Logout Button Clikced")
+    dispatch(logout())
+    navigate('/login')
   }
 
   const handleEdit = (id) => {
@@ -59,8 +66,11 @@ const UserList = () => {
   
 
   return (
-    <div>
+    <div>\
+      <div className='flex gap-3'>
         <Button onClick={handleOnClick}>Add User</Button>
+        <Button onClick={handleLogOut}>Logout</Button>
+      </div>
         <div className="grid gap-5 md:grid-cols-2">
             {users.length > 0 
                 ? renderCard() 

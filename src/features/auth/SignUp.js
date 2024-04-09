@@ -3,7 +3,8 @@ import Button from '../../components/Button'
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setCurrentUser } from './authSlice'
+import { signUpUser } from './authSlice'
+import {v4 as uuid} from 'uuid'
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -18,7 +19,8 @@ const SignUp = () => {
 
     const handleSignUp = () => {
         console.log(values)
-        dispatch(setCurrentUser({
+        dispatch(signUpUser({
+            id: uuid(),
             firstName: values.firstName,
             lastName: values.lastName,
             email: values.email,
